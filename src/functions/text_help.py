@@ -13,13 +13,13 @@ HELP_UPLODAD2= (
     "Cargar archivo .zip, \nel cuál contenga la carpeta (.gdb) \ncon la información a procesar."
 )
 HELP_UPLODAD= (
-    "Cargar carpeta .gdb, con la \ninformación que desea procesar."
+    "Cargar carpeta .gdb o archivo excel, con la \ninformación que desea procesar."
 )
 HELP_TESTUDENT= (
     "** Si elige 'Calcular Tstudent 1 cola', quiere decir que la Tstudent va a ser calculada automaticamente, de lo \ncontrario se podrá usar el valor de dos colas suministrado."
 )
 HELP_OBSERVACIÓN1= (
-    "** Para el uso del aplicativo se debe hacer una revisión del cálculo del volumen y verificar que el presentado\n en el MAG, sea coincidencia hasta un cuarto decimal con el presentado en documentos\ny anexos."
+    "** Para el uso del aplicativo se debe hacer una revisión del cálculo del volumen y verificar que el presentado\n en el MAG, sea coincidente hasta un cuarto decimal con el presentado en documentos\ny anexos."
 )
 HELP_OBSERVACIÓN2= (
     "** Solo se debe utilizar cuando se estime a partir de fustales el volumen a aprovechar."

@@ -62,7 +62,8 @@ class InterfazAplicacion:
 
         # # Cargar la imagen del logo
         self.logo_image = PhotoImage(file=f"{ROOT_IMG}logo-anla.png")
-        # self.logo_image2 = PhotoImage(file=f"{ROOT_IMG}logo_cm.png")
+        #self.logo_image2 = PhotoImage(file=f"{ROOT_IMG}logo_cm.png")
+        self.logo_image3 = PhotoImage(file=f"{ROOT_IMG}logo-anla-CM.png")
 
         # Crear un Frame para contener ambas imágenes en una fila
         logos_frame = tk.Frame(self.root)
@@ -70,18 +71,24 @@ class InterfazAplicacion:
 
         # Crear el primer Label para el primer logo y agregarlo al Frame
         logo_label = tk.Label(logos_frame, image=self.logo_image)
-        logo_label.pack(side=tk.LEFT, padx=5)  # Añade espacio horizontal
+        logo_label.pack(side=tk.TOP, padx=5)  # Añade espacio horizontal
 
         # # Crear el segundo Label para el segundo logo y agregarlo al Frame
-        # logo_label2 = tk.Label(logos_frame, image=self.logo_image2)
-        # logo_label2.pack(side=tk.LEFT, padx=5)  # Añade espacio horizontal
+        #logo_label2 = tk.Label(logos_frame, image=self.logo_image2)
+        #logo_label2.pack(side=tk.LEFT, padx=5)  # Añade espacio horizontal
+
+        # # Crear el segundo Label para el segundo logo y agregarlo al Frame
+        logo_label3 = tk.Label(logos_frame, image=self.logo_image3)
+        logo_label3.pack(side=tk.TOP, padx=5)  # Añade espacio horizontal
+        
 
         # Mantener referencias a las imágenes para que no se eliminen
         self.root.logo_image = self.logo_image
-        # self.root.logo_image2 = self.logo_image2
+        #self.root.logo_image2 = self.logo_image2
+        self.root.logo_image2 = self.logo_image3
         
         # Crear un botón para subir el archivo
-        self.upload_button = tk.Button(self.root, text="Subir carpeta (gdb)", command=self.upload_file2)
+        self.upload_button = tk.Button(self.root, text="Subir base de datos (gdb)", command=self.upload_file2)
         self.upload_button.pack(padx=50, pady=5)
         self.upload_button2 = tk.Button(self.root, text="Subir archivo excel (xlsx)", command=self.upload_file_xlsx)
         self.upload_button2.pack(padx=50, pady=5)
@@ -406,8 +413,8 @@ class InterfazAplicacion:
         self.entry_list = []  # Lista para almacenar los campos de entrada
         self.entry2_list = [] 
 
-        WIDTH_CANVAS = 500
-        HEIGHT_CANVAS = 280
+        WIDTH_CANVAS = 620
+        HEIGHT_CANVAS = 200
 
         # Crear frame Canvas
         frame_canvas = tk.Frame(self.root)  # Cambia 'self' por el marco superior si corresponde
@@ -444,7 +451,7 @@ class InterfazAplicacion:
             self.entry2_list.append(entry2)
 
         # print(f"len(lista_n_cobert):{len(lista_n_cobert)}")
-        if len(lista_n_cobert) >= 8:
+        if len(lista_n_cobert) >= 5:
 
              # Crear el Scrollbar en el mismo contenedor que el Canvas
             scrollbar = tk.Scrollbar(frame_canvas, orient="vertical", command=canvas.yview)
@@ -477,13 +484,13 @@ class InterfazAplicacion:
         self.frame_grouped = tk.Frame(self.root)
         self.frame_grouped.pack(side="top", fill="x", pady=10)
 
-        ayuda_label2 = tk.Label(self.frame_grouped, text=HELP_TESTUDENT, justify="left", anchor="w", width=80, font=("Helvetica", 10))
+        ayuda_label2 = tk.Label(self.frame_grouped, text=HELP_TESTUDENT, justify="left", anchor="w", width=90, font=("Helvetica", 10))
         ayuda_label2.pack(padx=25,pady=4)
-        ayuda_label3 = tk.Label(self.frame_grouped, text=HELP_OBSERVACIÓN1, justify="left", anchor="w", width=80, font=("Helvetica", 10))
+        ayuda_label3 = tk.Label(self.frame_grouped, text=HELP_OBSERVACIÓN1, justify="left", anchor="w", width=90, font=("Helvetica", 10))
         ayuda_label3.pack(padx=25,pady=4)
-        ayuda_label4 = tk.Label(self.frame_grouped, text=HELP_OBSERVACIÓN2, justify="left", anchor="w", width=80, font=("Helvetica", 10))
+        ayuda_label4 = tk.Label(self.frame_grouped, text=HELP_OBSERVACIÓN2, justify="left", anchor="w", width=90, font=("Helvetica", 10))
         ayuda_label4.pack(padx=25,pady=4)
-        ayuda_label5 = tk.Label(self.frame_grouped, text=HELP_OBSERVACIÓN3, justify="left", anchor="w", width=80, font=("Helvetica", 10))
+        ayuda_label5 = tk.Label(self.frame_grouped, text=HELP_OBSERVACIÓN3, justify="left", anchor="w", width=90, font=("Helvetica", 10))
         ayuda_label5.pack(padx=25,pady=4)
 
         # Crear un checkbox para usar el mismo ha en todos los campos
@@ -560,7 +567,7 @@ class InterfazAplicacion:
         self.check_button_testudent.grid(row=0, column=1, padx=10, pady=5, sticky="ew")
 
         # Checkbox 3
-        self.usar_desde_archivo = tk.BooleanVar()
+        self.usar_desde_archivo = tk.BooleanVar(value=False)
         check_button_archivo = tk.Checkbutton(
             self.frame_opciones,
             text="Usar área de muestreo\nde la gdb",
@@ -570,6 +577,8 @@ class InterfazAplicacion:
             command=lambda: self.use_same_ha_file(self.usar_desde_archivo)
         )
         check_button_archivo.grid(row=0, column=2, padx=10, pady=5, sticky="ew")
+        if self.type_origin == "xlsx":
+            check_button_archivo.config(state='disabled')
 
         # Checkbox 4
         self.usar_desde_archivo2 = tk.BooleanVar()
